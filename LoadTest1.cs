@@ -40,11 +40,11 @@ namespace Full.Chain.Registration.Test
             driver.Url = "https://subline-test.artsrn.ualberta.ca/48";
 
             Login();
-            
+
             // Click setting button
             IWebElement element5 = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
             element5.Click();
-            /*
+
             // Click add button
             IWebElement element6 = driver.FindElement(By.Id("addEventItem_Submission_ADD"));
             element6.Click();
@@ -52,12 +52,12 @@ namespace Full.Chain.Registration.Test
             Thread.Sleep(2000);
 
             IWebElement element7 = driver.FindElement(By.Id("addEventItem_Submission_ADD_BTN"));
-            element7.Click();*/
+            element7.Click();
 
             Thread.Sleep(2000);
 
             // Click edit form button
-            var element8 = driver.FindElements(By.LinkText("Edit Form"));
+            var element8 = driver.FindElement(By.Id("tableEventItem_Submission")).FindElements(By.LinkText("Edit Form"));
             element8[element8.Count - 1].Click();
 
             // To find the same page further
@@ -67,9 +67,16 @@ namespace Full.Chain.Registration.Test
 
             // Click delete section
             IWebElement element9 = driver.FindElement(By.CssSelector("i.fa-trash-o"));
-            element9.Click();         
-            
-        } 
+            element9.Click();
+
+            Thread.Sleep(4000);
+
+            // Click remove button
+            IWebElement remove = driver.FindElement(By.CssSelector("button.btn-danger"));
+            remove.Click();
+
+            Thread.Sleep(1000);
+        } /*
         [TearDown]
         public void TearDown()
         {
@@ -78,15 +85,14 @@ namespace Full.Chain.Registration.Test
             TesterEvent.Click();
 
             // Click setting button
-            IWebElement SettingButton = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
-            SettingButton.Click();
-
+            //IWebElement SettingButton = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
+            //SettingButton.Click();
 
             //driver.Close();
-        }
+        }*/
 
-        [TestCase ("Test 5_1", 5, 1)]
-        //[TestCase ("Test 5_2", 5, 5)]
+        [TestCase("Test 5_1", 5, 1)]
+        [TestCase ("Test 5_5", 5, 5)]
         public void LoadTest(string name, int fieldsPerSection, int sections)
         {
             // Insert name
@@ -99,7 +105,7 @@ namespace Full.Chain.Registration.Test
                 var element11 = driver.FindElement(By.CssSelector("i.fa-file-o"));
                 element11.Click();
 
-                for(int field = 0; field < fieldsPerSection; ++field)
+                for (int field = 0; field < fieldsPerSection; ++field)
                 {
                     // Add the field
                     var element12 = driver.FindElement(By.CssSelector("i.fa-plus-square-o"));
@@ -113,14 +119,73 @@ namespace Full.Chain.Registration.Test
                     // Insert value to Label & Name
                     IWebElement labelELement = driver.FindElements(By.CssSelector(".field-input-drop-shadow .field-input"))[0];
                     labelELement.SendKeys(label);
-                    IWebElement name1Element = driver.FindElements(By.CssSelector(".field-input-drop-shadow .field-input"))[3];
+
+                    // Click advance button
+                    IWebElement advancebutton = driver.FindElements(By.CssSelector(".field-input-drop-shadow .is-field-advaned"))[0];
+                    advancebutton.Click();
+
+                    IWebElement name1Element = driver.FindElements(By.CssSelector(".field-input-drop-shadow .field-input"))[7];
                     name1Element.SendKeys(name1);
 
-
-    
                     Console.WriteLine(label);
                 }
+
+                var closeElements = driver.FindElements(By.CssSelector(".toast-body .close")); // Find Elements
+                foreach(IWebElement close in closeElements)
+                {
+                    close.Click();
+                }
+
+                IWebElement savebutton = driver.FindElement(By.CssSelector("i.fa-save"));
+                savebutton.Click();
             }
-        }
+            
+            // Click Testerevent to back
+            IWebElement TesterEvent = driver.FindElement(By.LinkText("Tester Event"));
+            TesterEvent.Click();
+
+            // Click to purchase button
+            var purchase = driver.FindElements(By.LinkText("Click here to purchase"));
+            purchase[purchase.Count - 1].Click();
+
+            // Click agree
+            IWebElement agree = driver.FindElement(By.Id("mPolicyAgree"));
+            agree.Click();
+
+            // Matching the field --------------------------
+            for (int field = 0; field < fieldsPerSection; ++field)
+            {
+                // Label name Field 0_0---
+                string label = "Field " + 0 + "_" + field;
+                // Name property name 0_0---
+                string name1 = "name " + 0 + "_" + field;
+
+                IWebElement matchlabel = driver.FindElements(By.CssSelector(".form-group > .control-label"))[field];
+                Assert.AreEqual(label, matchlabel.Text);
+            }
+
+            for (int section = 1; section < sections; ++section)
+            {                
+                for (int field = 0; field < fieldsPerSection; ++field)
+                {
+                    // Label name Field 0_0---
+                    string label = "Field " + section + "_" + field;
+                    // Name property name 0_0---
+                    string name1 = "name " + section + "_" + field;
+
+                    int index = field + (fieldsPerSection * section);
+                    IWebElement matchlabel = driver.FindElements(By.CssSelector(".form-group > .control-label"))[index];
+                    Assert.AreEqual(label, matchlabel.Text);                    
+                }
+
+                // Click next buton
+                IWebElement nextbutton = driver.FindElement(By.Id("nextPage"));
+                nextbutton.Click();
+            }
+            // Matching the label
+            IWebElement matchlabel1 = driver.FindElement(By.CssSelector("h2"));
+            Assert.AreEqual(name,matchlabel1.Text);
+        }        
+        
     }
 }
