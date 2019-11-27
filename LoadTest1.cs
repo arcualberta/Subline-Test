@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium.Interactions;
 using System.Threading;
+using FindForm.Configuration;
 
 namespace Full.Chain.Registration.Test
 {
@@ -24,9 +25,9 @@ namespace Full.Chain.Registration.Test
 
             // Inserting login credentials
             IWebElement element2 = driver.FindElement(By.Id("Email"));
-            element2.SendKeys("arctech@ualberta.ca");
+            element2.SendKeys(Settings.UserName);
             IWebElement element3 = driver.FindElement(By.Id("Password"));
-            element3.SendKeys("p4ssword!");
+            element3.SendKeys(Settings.Password);
 
             // Click login button to log in
             IWebElement element4 = driver.FindElement(By.Id("logInButton"));
@@ -37,7 +38,7 @@ namespace Full.Chain.Registration.Test
         public void Setup()
         {
             driver = new ChromeDriver(".");
-            driver.Url = "https://subline-test.artsrn.ualberta.ca/48";
+            driver.Url = Settings.TestConfig.EventUrl;
 
             Login();
 
@@ -185,7 +186,27 @@ namespace Full.Chain.Registration.Test
             // Matching the label
             IWebElement matchlabel1 = driver.FindElement(By.CssSelector("h2"));
             Assert.AreEqual(name,matchlabel1.Text);
-        }        
-        
+            
+            // Click Testerevent to back
+            IWebElement TesterEvent2 = driver.FindElement(By.LinkText("Tester Event"));
+            TesterEvent2.Click();
+
+            // Click setting button
+            IWebElement setting = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
+            setting.Click();
+            
+             // CLick setting button
+            driver.FindElement(By.Id("editEventItem_Submission_" + id + "_EDIT")).Click();
+
+            Thread.Sleep(2000);
+
+            // Click delete button
+            IWebElement delete = driver.FindElement(By.Id("editEventItem_Submission_DELETE_BUTTON"));
+            delete.Click();
+
+            driver.SwitchTo().Alert().Accept();
+
+        }
+
     }
 }
