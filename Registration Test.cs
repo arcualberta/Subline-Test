@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium.Interactions;
 using System.Threading;
+using FindForm.Configuration;
 
 namespace Full.Chain.Registration.Test
 {
@@ -24,9 +25,9 @@ namespace Full.Chain.Registration.Test
 
             // Inserting login credentials
             IWebElement element2 = driver.FindElement(By.Id("Email"));
-            element2.SendKeys("arctech@ualberta.ca");
+            element2.SendKeys(Settings.UserName);
             IWebElement element3 = driver.FindElement(By.Id("Password"));
-            element3.SendKeys("p4ssword!");
+            element3.SendKeys(Settings.Password);
 
             // Click login button to log in
             IWebElement element4 = driver.FindElement(By.Id("logInButton"));
@@ -37,7 +38,7 @@ namespace Full.Chain.Registration.Test
         public void Setup()
         {
             driver = new ChromeDriver(".");
-            driver.Url = "https://subline-test.artsrn.ualberta.ca/48";
+            driver.Url = Settings.TestConfig.EventUrl;
 
             Login();
 

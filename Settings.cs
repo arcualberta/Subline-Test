@@ -61,6 +61,7 @@ namespace FindForm.Configuration
         }
         */
         public IConfigurationRoot Config { get; private set; }
+        public static string SiteUrl { get; internal set; }
 
         public Settings()
         {
