@@ -82,8 +82,9 @@ namespace Client.Site.Tests
             Assert.AreEqual(dataPriceOpt1, "100");
             string dataPriceCalculatedOpt1 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 0, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt1, "100");
-            
-            //string spanValue = formHelper.GetTextFieldValue2(driver, "/html/body/div[3]/div/form/div[3]/div/div[1]/span");
+
+            string spanValue = formHelper.GetSpanElementText(driver, "Elements_2__ExtendedValue_0_");
+            Assert.AreEqual(spanValue, "Opt 1 - $100");
             //Assert.AreEqual(spanValue, "Opt 1 - $100");
 
             string dataPriceOpt2 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price");

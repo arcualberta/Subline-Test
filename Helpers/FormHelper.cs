@@ -15,17 +15,16 @@ namespace FillingForm.Helpers
             return attVal;
         }
         /*
-        public string GetSpanElementText(IWebDriver driver, string id, string tag)
+        public string GetSpanElementText(IWebDriver driver, string id)
         {
             var spanId = driver.FindElement(By.Id(id));
-            var spanText = spanId.GetAttribute.ToString;
-            return spanText
-        }*/
-        public string GetTextFieldValue2(IWebDriver driver, string xPath)
-        {
-            var textField = driver.FindElement(By.Id(xPath));
-            return textField.GetAttribute("value");
+            return spanId.GetAttribute("span");
         }
+        /*public string GetTextFieldValue2(IWebDriver driver, string xPath)
+        {
+            var textField2 = driver.FindElement(By.XPath(xPath));
+            return textField2.GetAttribute("value");
+        }*/
 
         public string GetTextFieldValue(IWebDriver driver, string id)
         {
@@ -39,10 +38,12 @@ namespace FillingForm.Helpers
             var element = radioButtonList[optNum];
             element.Click();            
         }
-        /*
-        public string GetSubtotalValue(IWebDriver driver, string id)
-        {
 
-        }*/
+        // Visible if Test
+        public string IfVisible(IWebDriver driver, string id)
+        {
+            var visible = driver.FindElement(By.Id(id));
+            return visible.GetAttribute("style");
+        }
     }
 }
