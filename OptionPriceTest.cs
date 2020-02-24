@@ -22,7 +22,7 @@ namespace OptionPrice.Test
             driver = new ChromeDriver(".");
         }
         [Test]
-        public void VisibleIfTest()
+        public void optionPriceTest()
         {
 
             driver.Url = ("https://subline-dev.artsrn.ualberta.ca/Registration/Create/54?eventItemDef=399");
@@ -32,6 +32,36 @@ namespace OptionPrice.Test
                 element.Click();
             }
             FormHelper formHelper = new FormHelper();
+
+            // Test for "SUBTOTAL", "GST", "TOTAL" 
+            string subTotalValue = formHelper.GetTextFieldValue(driver, "subTotal");
+            Assert.AreEqual(subTotalValue, "0.00");
+            string GSTValue = formHelper.GetTextFieldValue(driver, "gst");
+            Assert.AreEqual(GSTValue, "0.00");
+            string totalValue = formHelper.GetTextFieldValue(driver, "total");
+            Assert.AreEqual(totalValue, "0.00");
+
+            // Click Option 1
+            formHelper.ClickRadioOption(driver, "Elements_1__ExtendedValue_0_", 0);
+
+            // Test for "SUBTOTAL", "GST", "TOTAL" for Opt 1
+            string subTotalValueOpt1 = formHelper.GetTextFieldValue(driver, "subTotal");
+            Assert.AreEqual(subTotalValueOpt1, "100.00");
+            string GSTValueOpt1 = formHelper.GetTextFieldValue(driver, "gst");
+            Assert.AreEqual(GSTValueOpt1, "5.00");
+            string totalValueOpt1 = formHelper.GetTextFieldValue(driver, "total");
+            Assert.AreEqual(totalValueOpt1, "105.00");
+
+            // Click Option 2
+            formHelper.ClickRadioOption(driver, "Elements_1__ExtendedValue_0_", 1);
+
+            // Test for "SUBTOTAL", "GST", "TOTAL" for Opt 1
+            string subTotalValueOpt2 = formHelper.GetTextFieldValue(driver, "subTotal");
+            Assert.AreEqual(subTotalValueOpt2, "200.00");
+            string GSTValueOpt2 = formHelper.GetTextFieldValue(driver, "gst");
+            Assert.AreEqual(GSTValueOpt2, "10.00");
+            string totalValueOpt2 = formHelper.GetTextFieldValue(driver, "total");
+            Assert.AreEqual(totalValueOpt2, "210.00");
         }
     }
 }

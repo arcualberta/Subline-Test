@@ -83,8 +83,8 @@ namespace Client.Site.Tests
             string dataPriceCalculatedOpt1 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 0, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt1, "100");
 
-            string spanValue = formHelper.GetSpanElementText(driver, "Elements_2__ExtendedValue_0_");
-            Assert.AreEqual(spanValue, "Opt 1 - $100");
+            //string spanValue = formHelper.GetSpanElementText(driver, "Elements_2__ExtendedValue_0_");
+            //Assert.AreEqual(spanValue, "Opt 1 - $100");
             //Assert.AreEqual(spanValue, "Opt 1 - $100");
 
             string dataPriceOpt2 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price");
