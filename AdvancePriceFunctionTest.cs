@@ -33,7 +33,7 @@ namespace Advance.Price.Function.Test
                 element.Click();
             }
             FormHelper formHelper = new FormHelper();
-            /*
+            
             // Test for Number of Journals and Number of Catalogues fields 
             string JourValue = formHelper.GetTextFieldValue(driver, "Elements_2__Value");
             Assert.AreEqual(JourValue, "0");
@@ -90,9 +90,9 @@ namespace Advance.Price.Function.Test
             Assert.AreEqual(GSTValue, "7.75");
             string totalValue = formHelper.GetTextFieldValue(driver, "total");
             Assert.AreEqual(totalValue, "162.75");
-            */
+            
             // Click on next button
-            formHelper.ClickOnButton(driver, ".btn");
+            //formHelper.ClickOnButton(driver, ".btn");
 
         }
     }
