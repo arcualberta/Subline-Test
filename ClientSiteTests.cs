@@ -12,57 +12,6 @@ namespace Client.Site.Tests
 
     class ClientSiteTests
     {
-        private IWebDriver driver;
-       /* 
-        [SetUp]
-        public void setup()
-        {
-
-        }
-
-        [Test]
-        public void VisibleIfTest()
-        {
-            IWebDriver driver = new ChromeDriver(".");
-
-            // Launch the Form WebSite
-            driver.Url = ("https://subline-dev.artsrn.ualberta.ca/Registration/Create/54?eventItemDef=398");
-            IWebElement element = driver.FindElement(By.Id("mPolicyAgree"));
-            if (element != null)
-            {
-                element.Click();
-            }     
-        }
-        */
-       /* [Test]
-
-        public void OptionPriceTest()
-        {
-            IWebDriver driver = new ChromeDriver(".");
-
-            // Launch the Form WebSite
-            driver.Url = "https://subline-dev.artsrn.ualberta.ca/Registration/Create/54?eventItemDef=399";
-            IWebElement element = driver.FindElement(By.Id("mPolicyAgree"));
-            if (element != null)
-            {
-                element.Click();
-            }
-
-            FormHelper formHelper = new FormHelper();
-
-            string dataPrice = formHelper.GetRadioOptionAttributeValue(driver, "Elements_1__ExtendedValue_0_", 0, "data-price");
-            Assert.AreEqual(dataPrice, "100");
-
-            string textValue = formHelper.GetTextFieldValue(driver, "subTotal");
-            Assert.AreEqual(textValue, "0.00");         
-
-            formHelper.ClickRadioOption(driver, "Elements_1__ExtendedValue_0_", 0);
-
-            string textValue2 = formHelper.GetTextFieldValue(driver, "subTotal");
-            Assert.AreEqual(textValue2, "100.00");
-        }
-        */
-
         [Test]
         public void PriceFunctionTest()
         {
@@ -83,15 +32,18 @@ namespace Client.Site.Tests
             string dataPriceCalculatedOpt1 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 0, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt1, "100");
 
-            //string spanValue = formHelper.GetSpanElementText(driver, "Elements_2__ExtendedValue_0_");
-            //Assert.AreEqual(spanValue, "Opt 1 - $100");
-            //Assert.AreEqual(spanValue, "Opt 1 - $100");
+            string spanValue = formHelper.GetRadioSpanText(driver, "Elements_2__ExtendedValue_0_", 0);
+            Assert.AreEqual(spanValue, "Opt 1 - $100");
+            
 
             string dataPriceOpt2 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price");
             Assert.AreEqual(dataPriceOpt2, "200");
             string dataPriceCalculatedOpt2 = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt2, "200");
-            
+
+            string spanValue2 = formHelper.GetRadioSpanText(driver, "Elements_2__ExtendedValue_0_", 1);
+            Assert.AreEqual(spanValue2, "Opt 2 - $200");
+
             string textValue = formHelper.GetTextFieldValue(driver, "subTotal");
             Assert.AreEqual(textValue, "0.00");
 
@@ -103,12 +55,16 @@ namespace Client.Site.Tests
             string dataPriceCalculatedOpt1Student = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 0, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt1Student, "50");
 
+            string spanValue3 = formHelper.GetRadioSpanText(driver, "Elements_2__ExtendedValue_0_", 0);
+            Assert.AreEqual(spanValue3, "Opt 1 - $50");
+
             string dataPriceOpt2Student = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price");
             Assert.AreEqual(dataPriceOpt2Student, "200");
             string dataPriceCalculatedOpt2Student = formHelper.GetRadioOptionAttributeValue(driver, "Elements_2__ExtendedValue_0_", 1, "data-price-calculated");
             Assert.AreEqual(dataPriceCalculatedOpt2Student, "100");
 
-            // Text inside the span
+            string spanValue4 = formHelper.GetRadioSpanText(driver, "Elements_2__ExtendedValue_0_", 1);
+            Assert.AreEqual(spanValue4, "Opt 2 - $100");
 
             string subTotalValue = formHelper.GetTextFieldValue(driver, "subTotal");
             Assert.AreEqual(subTotalValue, "0.00");
@@ -140,9 +96,7 @@ namespace Client.Site.Tests
             string totalValueOpt2 = formHelper.GetTextFieldValue(driver, "total");
             Assert.AreEqual(totalValueOpt2, "210.00");
 
-            /*
-            string textValue2 = formHelper.GetTextFieldValue(driver, "subTotal");
-            Assert.AreEqual(textValue2, "100.00");*/
+            driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
         }
 
     }

@@ -33,7 +33,7 @@ namespace Advance.Price.Function.Test
                 element.Click();
             }
             FormHelper formHelper = new FormHelper();
-            /*
+            
             // Test for Number of Journals and Number of Catalogues fields 
             string JourValue = formHelper.GetTextFieldValue(driver, "Elements_2__Value");
             Assert.AreEqual(JourValue, "0");
@@ -53,11 +53,11 @@ namespace Advance.Price.Function.Test
             // Insert value of Journals
             formHelper.InsertValueJour(driver, "Elements_2__Value", 0);
 
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
             // Subtotal value 120
-            //string subTotalValue1 = formHelper.GetTextFieldValue(driver, "subTotal");
-            //Assert.AreEqual(subTotalValue1, "120.00");
+            string subTotalValue1 = formHelper.GetTextFieldValue(driver, "subTotal");
+            Assert.AreEqual(subTotalValue1, "120.00");
 
             // Click pickup button
             formHelper.ClickRadioOption(driver, "Elements_4__ExtendedValue_0_", 0);
@@ -66,21 +66,22 @@ namespace Advance.Price.Function.Test
             string subTotalValue2 = formHelper.GetTextFieldValue(driver, "subTotal");
             Assert.AreEqual(subTotalValue2, "100.00");
 
-            //Click ship button
+            // Click ship button
             formHelper.ClickRadioOption(driver, "Elements_4__ExtendedValue_0_", 1);
 
             // Subtotal value 120
             string subTotalValue3 = formHelper.GetTextFieldValue(driver, "subTotal");
             Assert.AreEqual(subTotalValue3, "120.00");
 
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
             // Insert value catalogue
             formHelper.InsertValueCata(driver, "Elements_3__Value", 0);
 
             Thread.Sleep(2000);
 
             // Span text, delivery option text
-
+            string spanValue = formHelper.GetRadioSpanText(driver, "Elements_4__ExtendedValue_0_", 1);
+            Assert.AreEqual(spanValue, "Ship ($10 per book) - $30");
             // Subtotal value 120
             string subTotalValue4 = formHelper.GetTextFieldValue(driver, "subTotal");
             Assert.AreEqual(subTotalValue4, "155.00");
@@ -89,11 +90,10 @@ namespace Advance.Price.Function.Test
             string GSTValue = formHelper.GetTextFieldValue(driver, "gst");
             Assert.AreEqual(GSTValue, "7.75");
             string totalValue = formHelper.GetTextFieldValue(driver, "total");
-            Assert.AreEqual(totalValue, "162.75");
-            */
-            // Click on next button
-            formHelper.ClickOnButton(driver, ".btn");
-
+            Assert.AreEqual(totalValue, "162.75");            
+            
+            driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
+            
         }
     }
 }
