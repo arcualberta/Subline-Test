@@ -14,7 +14,7 @@ namespace FillingForm.Helpers
             var attVal = element.GetAttribute(attName);
             return attVal;
         }
-        
+
         public string GetTextFieldValue(IWebDriver driver, string id)
         {
             var textField = driver.FindElement(By.Id(id));
@@ -60,6 +60,48 @@ namespace FillingForm.Helpers
             element.Clear();
             element.SendKeys("1");
         }
-        
+        /*
+        public string GetResultText(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var b = parent.FindElement(By.TagName("td"));
+            return b.Text;
+        }*/
+
+        public string GetResultText(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var bTag = parent.FindElement(By.CssSelector("tr:nth-child(11) td:nth-child(2) b"));            
+            return bTag.Text;
+        }
+        public string GetReviewPageText(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var subTotal = parent.FindElement(By.CssSelector("tr:nth-child(20) td:nth-child(2)"));
+            return subTotal.Text;
+        }
+        public string GetReviewPageText2(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var GST = parent.FindElement(By.CssSelector("tr:nth-child(21) td:nth-child(2)"));
+            return GST.Text;
+        }
+        public string GetReviewPageText3(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var TOTAL = parent.FindElement(By.CssSelector("tr:nth-child(22) td:nth-child(2)"));
+            return TOTAL.Text;
+        }
     }
 }

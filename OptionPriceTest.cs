@@ -62,6 +62,13 @@ namespace OptionPrice.Test
             Assert.AreEqual(GSTValueOpt2, "10.00");
             string totalValueOpt2 = formHelper.GetTextFieldValue(driver, "total");
             Assert.AreEqual(totalValueOpt2, "210.00");
+
+            // Click on next button
+            driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
+
+            // Test the value of total
+            string resultValue = formHelper.GetResultText(driver, "elements_1__FormElementDefinitionId", 0);
+            Assert.AreEqual(resultValue, "210.00");
         }
     }
 }

@@ -53,10 +53,11 @@ namespace Advance.Price.Function.Test
             // Insert value of Journals
             formHelper.InsertValueJour(driver, "Elements_2__Value", 0);
 
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
 
             // Subtotal value 120
             string subTotalValue1 = formHelper.GetTextFieldValue(driver, "subTotal");
+            //Thread.Sleep(2000);
             Assert.AreEqual(subTotalValue1, "120.00");
 
             // Click pickup button
@@ -92,8 +93,16 @@ namespace Advance.Price.Function.Test
             string totalValue = formHelper.GetTextFieldValue(driver, "total");
             Assert.AreEqual(totalValue, "162.75");            
             
+            // Click on next
             driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
-            
+
+            // Test the value of review page
+            string subTotal = formHelper.GetReviewPageText(driver, "elements_4__FormElementDefinitionId", 0);
+            Assert.AreEqual(subTotal, "155.00");
+            string GST = formHelper.GetReviewPageText2(driver, "elements_4__FormElementDefinitionId", 0);
+            Assert.AreEqual(GST, "7.75");
+            string TOTAL = formHelper.GetReviewPageText3(driver, "elements_4__FormElementDefinitionId", 0);
+            Assert.AreEqual(TOTAL, "162.75");
         }
     }
 }
