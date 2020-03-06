@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -62,8 +62,6 @@ namespace Visible.OptionPrice.PriceFunction.Test
             // Description 2 Visible Test
             string Des2VisibleTest2 = formHelper.IfVisible(driver, "desc2_5793");
             Assert.AreEqual(Des2VisibleTest2, "display: block;");
-
-
 
         }
 
