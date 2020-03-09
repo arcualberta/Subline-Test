@@ -61,10 +61,6 @@ namespace Visible.OptionPrice.PriceFunction.Test
             // Description 2 Visible Test
             string Des2VisibleTest2 = formHelper.IfVisible(driver, "desc2_5793");
             Assert.AreEqual(Des2VisibleTest2, "display: block;");
-<<<<<<< HEAD
-=======
-
->>>>>>> ee5c5b55c823ff0638b8cca3222d39c4a5d54bd0
         }
     }
 }
