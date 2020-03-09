@@ -9,7 +9,6 @@ using FillingForm.Helpers;
 
 namespace Client.Site.Tests
 {
-
     class ClientSiteTests
     {
         [Test]
@@ -98,6 +97,5 @@ namespace Client.Site.Tests
 
             driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
         }
-
     }
 }

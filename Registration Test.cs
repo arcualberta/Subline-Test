@@ -32,7 +32,17 @@ namespace Full.Chain.Registration.Test
             // Click login button to log in
             IWebElement element4 = driver.FindElement(By.Id("logInButton"));
             element4.Click();
+
+            // Click setting button
+            IWebElement element5 = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
+            element5.Click();
+
+            // Click add button
+            IWebElement element6 = driver.FindElement(By.Id("addEventItem_Registration_ADD"));
+            element6.Click();
         }
+            
+
 
         [SetUp]
         public void Setup()
@@ -41,14 +51,6 @@ namespace Full.Chain.Registration.Test
             driver.Url = Settings.TestConfig.EventUrl;
 
             Login();
-
-            // Click setting button
-            IWebElement element5 = driver.FindElement(By.CssSelector(".navbar-nav > .nav-item"));
-            element5.Click();
-            
-            // Click add button
-            IWebElement element6 = driver.FindElement(By.Id("addEventItem_Registration_ADD"));
-            element6.Click();
 
             // Time delay for loading page
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
@@ -72,6 +74,12 @@ namespace Full.Chain.Registration.Test
             // Click delete section
             IWebElement element9 = driver.FindElement(By.CssSelector("i.fa-trash-o"));
             element9.Click();
+
+            Thread.Sleep(4000);
+
+            // Click remove button
+            IWebElement remove = driver.FindElement(By.CssSelector("button.btn-danger"));
+            remove.Click();
         }
 
         [Test]
@@ -97,11 +105,15 @@ namespace Full.Chain.Registration.Test
 
             // Insert label name
             var element4 = driver.FindElements(By.CssSelector(".field-input"));
-            element4[1].SendKeys("Name");
+            element4[2].SendKeys("Name");
+
+            // Click advance button
+            IWebElement advancebutton = driver.FindElement(By.CssSelector(".custom-control-label"));
+            advancebutton.Click();
 
             // Insert name property
             var element5 = driver.FindElements(By.CssSelector(".field-input"));
-            element5[4].SendKeys("name");
+            element5[11].SendKeys("name");
 
             // Click required field
             IWebElement element6 = driver.FindElement(By.CssSelector(".is-field-required > label.custom-control-label"));
@@ -119,11 +131,15 @@ namespace Full.Chain.Registration.Test
 
             // Insert label name
             var element9 = driver.FindElements(By.CssSelector(".field-input"));
-            element9[5].SendKeys("Email");
+            element9[16].SendKeys("Email");
+
+            // Click advance button
+            var advancebutton2 = driver.FindElements(By.CssSelector(".custom-control-label"));
+            advancebutton2[6].Click();
 
             // Insert name property
-            var element10 = driver.FindElements(By.CssSelector(".field-input"));
-            element10[8].SendKeys("email");
+            //var element10 = driver.FindElements(By.CssSelector(".field-input"));
+            //element10[27].SendKeys("email");
 
             // Click required button
             var element11 = driver.FindElements(By.CssSelector(".is-field-required > label.custom-control-label"));

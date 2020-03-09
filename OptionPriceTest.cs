@@ -24,7 +24,6 @@ namespace OptionPrice.Test
         [Test]
         public void optionPriceTest()
         {
-
             driver.Url = ("https://subline-dev.artsrn.ualberta.ca/Registration/Create/54?eventItemDef=399");
             IWebElement element = driver.FindElement(By.Id("mPolicyAgree"));
             if (element != null)

@@ -92,7 +92,7 @@ namespace Full.Chain.Registration.Test
             //driver.Close();
         }*/
 
-        [TestCase("Test 5_1", 5, 1)]
+        //[TestCase("Test 5_1", 5, 1)]
         [TestCase ("Test 5_5", 5, 5)]
         public void LoadTest(string name, int fieldsPerSection, int sections)
         {

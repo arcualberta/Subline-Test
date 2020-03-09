@@ -24,7 +24,6 @@ namespace Visible.OptionPrice.PriceFunction.Test
         [Test]
         public void VisibleIfTest()
         {
-
             driver.Url = ("https://subline-dev.artsrn.ualberta.ca/Registration/Create/54?eventItemDef=398");
             IWebElement element = driver.FindElement(By.Id("mPolicyAgree"));
             if (element != null)
@@ -62,8 +61,6 @@ namespace Visible.OptionPrice.PriceFunction.Test
             // Description 2 Visible Test
             string Des2VisibleTest2 = formHelper.IfVisible(driver, "desc2_5793");
             Assert.AreEqual(Des2VisibleTest2, "display: block;");
-
         }
-
     }
 }

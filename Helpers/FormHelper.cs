@@ -14,20 +14,17 @@ namespace FillingForm.Helpers
             var attVal = element.GetAttribute(attName);
             return attVal;
         }
-
         public string GetTextFieldValue(IWebDriver driver, string id)
         {
             var textField = driver.FindElement(By.Id(id));
             return textField.GetAttribute("value");
         }
-
         public void ClickRadioOption(IWebDriver driver, string id, int optNum)
         {
             var radioButtonList = driver.FindElements(By.Id(id));
             var element = radioButtonList[optNum];
             element.Click();
         }
-
         // Get the span value
         public string GetRadioSpanText(IWebDriver driver, string id, int optNum)
         {
@@ -37,14 +34,12 @@ namespace FillingForm.Helpers
             var span = parent.FindElement(By.TagName("span"));
             return span.Text;
         }
-
         // Visible if Test
         public string IfVisible(IWebDriver driver, string id)
         {
             var visible = driver.FindElement(By.Id(id));
             return visible.GetAttribute("style");
         }
-
         public void InsertValueJour(IWebDriver driver, string id, int optNum)
         {
             var ValueOpt = driver.FindElements(By.Id(id));
@@ -52,24 +47,13 @@ namespace FillingForm.Helpers
             element.Clear();
             element.SendKeys("2");
         }
-
         public void InsertValueCata(IWebDriver driver, string id, int optNum)
         {
             var ValueOpt1 = driver.FindElements(By.Id(id));
             var element = ValueOpt1[optNum];
             element.Clear();
             element.SendKeys("1");
-        }
-        /*
-        public string GetResultText(IWebDriver driver, string id, int optNum)
-        {
-            var radioButtonList = driver.FindElements(By.Id(id));
-            var element = radioButtonList[optNum];
-            var parent = element.FindElement(By.XPath("./.."));
-            var b = parent.FindElement(By.TagName("td"));
-            return b.Text;
-        }*/
-
+        }        
         public string GetResultText(IWebDriver driver, string id, int optNum)
         {
             var radioButtonList = driver.FindElements(By.Id(id));
