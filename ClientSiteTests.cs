@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
