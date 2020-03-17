@@ -19,6 +19,7 @@ namespace FillingForm.Helpers
             var textField = driver.FindElement(By.Id(id));
             return textField.GetAttribute("value");
         }
+        // Click function
         public void ClickRadioOption(IWebDriver driver, string id, int optNum)
         {
             var radioButtonList = driver.FindElements(By.Id(id));
@@ -40,7 +41,6 @@ namespace FillingForm.Helpers
             var visible = driver.FindElement(By.Id(id));
             return visible.GetAttribute("style");
         }
-
         public void InsertValueJour(IWebDriver driver, string id, int optNum)
         {
             var ValueOpt = driver.FindElements(By.Id(id));
@@ -62,18 +62,7 @@ namespace FillingForm.Helpers
             var parent = element.FindElement(By.XPath("./.."));
             var bTag = parent.FindElement(By.CssSelector("tr:nth-child(11) td:nth-child(2) b"));            
             return bTag.Text;
-        }/*
-        public string GetReviewPageText(IWebDriver driver, string id, int optNum)
-        {
-            //var radioButtonList = driver.FindElements(By.Id(id));
-            //public string GetResultText(IWebDriver driver, string id, int optNum)     
-       
-            var radioButtonList = driver.FindElements(By.Id(id));
-            var element = radioButtonList[optNum];
-            var parent = element.FindElement(By.XPath("./.."));
-            var bTag = parent.FindElement(By.CssSelector("tr:nth-child(11) td:nth-child(2) b"));            
-            return bTag.Text;
-        }*/
+        }
         public string GetReviewPageText(IWebDriver driver, string id, int optNum)
         {
             var radioButtonList = driver.FindElements(By.Id(id));
@@ -98,5 +87,32 @@ namespace FillingForm.Helpers
             var TOTAL = parent.FindElement(By.CssSelector("tr:nth-child(22) td:nth-child(2)"));
             return TOTAL.Text;
         }
+        public void InsertValueInput1(IWebDriver driver, string id, int optNum)
+        {
+            var ValueOpt1 = driver.FindElements(By.Id(id));
+            var element = ValueOpt1[optNum];
+            element.SendKeys("Hello");
+        }
+        // Error text not visible
+        public string CheckErrorTextNotVisible(IWebDriver driver, string id)
+        {
+            var visible = driver.FindElement(By.Id(id));
+            return visible.GetAttribute("aria-invalid");
+        }
+        public string CheckBackButton(IWebDriver driver, string id, int optNum)
+        {
+            var radioButtonList = driver.FindElements(By.Id(id));
+            var element = radioButtonList[optNum];
+            var parent = element.FindElement(By.XPath("./.."));
+            var TOTAL = parent.FindElement(By.CssSelector("tr:nth-child(15) td input"));
+            return TOTAL.Text;
+        }
+        public void InsertValueInput2(IWebDriver driver, string id, int optNum)
+        {
+            var ValueOpt1 = driver.FindElements(By.Id(id));
+            var element = ValueOpt1[optNum];
+            element.SendKeys("World");
+        }
+
     }
 }
