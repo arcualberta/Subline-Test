@@ -98,21 +98,24 @@ namespace FillingForm.Helpers
         {
             var visible = driver.FindElement(By.Id(id));
             return visible.GetAttribute("aria-invalid");
-        }
-        public string CheckBackButton(IWebDriver driver, string id, int optNum)
-        {
-            var radioButtonList = driver.FindElements(By.Id(id));
-            var element = radioButtonList[optNum];
-            var parent = element.FindElement(By.XPath("./.."));
-            var TOTAL = parent.FindElement(By.CssSelector("tr:nth-child(15) td input"));
-            return TOTAL.Text;
-        }
+        }               
         public void InsertValueInput2(IWebDriver driver, string id, int optNum)
         {
             var ValueOpt1 = driver.FindElements(By.Id(id));
             var element = ValueOpt1[optNum];
             element.SendKeys("World");
         }
-
+        public string CheckBackButtonVisible(IWebDriver driver, string className)
+        {
+            var backButton = driver.FindElement(By.ClassName(className));
+            return backButton.GetAttribute("value");
+        }
+        public string CheckErrorVisible(IWebDriver driver, string className)
+        {
+            var erVisible = driver.FindElement(By.ClassName(className));            
+            var parent = erVisible.FindElement(By.XPath("./.."));
+            var visibleTxt = parent.FindElement(By.XPath(("/html/body/div[2]/div/form/div[4]/div/span[2]")));
+            return visibleTxt.Text;
+        }
     }
 }

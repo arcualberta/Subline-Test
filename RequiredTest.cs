@@ -35,9 +35,12 @@ namespace Required.If.Test
             // Click next
             driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
 
+            string checkErrortxt = formHelper.CheckErrorVisible(driver, "field-validation-error");
+            Assert.AreEqual(checkErrortxt, "Cannot be empty.");
+                        
             // Check Cannot be empty
-            IWebElement result = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.AreEqual("Cannot be empty.", result.Text);
+            //IWebElement result = driver.FindElement(By.ClassName("field-validation-error"));
+            //Assert.AreEqual("Cannot be empty.", result.Text);
 
             // Reload the page
             driver.Navigate().Refresh();
@@ -60,8 +63,9 @@ namespace Required.If.Test
             // Click next
             driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
 
-            //string backButtonCheck = formHelper.CheckBackButton(driver, "elements_3__Id", 0);
-            //Assert.AreEqual(backButtonCheck, "Back");
+            // Check back button
+            string checkBackButton = formHelper.CheckBackButtonVisible(driver, "btn");
+            Assert.AreEqual(checkBackButton, "Back");
 
             // Click back
             driver.FindElement(By.CssSelector("input[value ='Back']")).Click();
@@ -87,6 +91,9 @@ namespace Required.If.Test
             formHelper.ClickRadioOption(driver, "Elements_1__ExtendedValue_0_", 2);
             // Click next
             driver.FindElement(By.CssSelector("input[value ='Next']")).Click();
+            // Check back button
+            string checkBackButtonAgain = formHelper.CheckBackButtonVisible(driver, "btn");
+            Assert.AreEqual(checkBackButtonAgain, "Back");
         }
     }
 }
