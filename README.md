@@ -1,2 +1,2 @@
 # Subline-Test
-Automated testing environment for subline.
+This is a Selenium-based automated test suite for Subline.
