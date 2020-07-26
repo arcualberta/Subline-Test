@@ -121,7 +121,7 @@ namespace Option.Test
             clickonpurchaseoptionstab2.Click();
             IWebElement clickondropicon2 = driver.FindElement(By.Id("dropdown-icon-0"));
             clickondropicon2.Click();
-
+            /*
             IWebElement pricecheck = driver.FindElement(By.Id("price-option-price-pc-0-po-0"));
             Assert.AreEqual("25.5", pricecheck.Text);
 
@@ -131,12 +131,12 @@ namespace Option.Test
             IWebElement pricecheck2 = driver.FindElement(By.Id("price-option-price-pc-0-po-1"));
             Assert.AreEqual("25.5", pricecheck2.Text);
             IWebElement limitcheck2 = driver.FindElement(By.Id("price-option-limit-pc-0-po-1"));
-            Assert.AreEqual("0", limitcheck2.Text);
+            Assert.AreEqual("0", limitcheck2.Text);*/
 
             IWebElement clickondeletebtn = driver.FindElement(By.Id("delete-category-button-0"));
             clickondeletebtn.Click();
 
-            IWebElement clickonyesdeletebtn = driver.FindElement(By.Id("are-you-sure-close-one-button"));
+            IWebElement clickonyesdeletebtn = driver.FindElement(By.Id("are-you-sure-close-all-button"));
             clickonyesdeletebtn.Click();
 
 
