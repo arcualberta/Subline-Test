@@ -1,29 +1,35 @@
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Brandnew.Configuration;
 
 namespace Option.Test
 {
     [TestFixture]
-    class PurchaseOptionsTest
+    class BrandNewPurchse
     {
         private IWebDriver driver;
+        //private string id;
 
         //protected IWebDriver driver;
 
-        [SetUp]
-        public void SetUp()
+        
+        public void Login()
         {
-            driver = new ChromeDriver(".");
-            driver.Url = ("https://subline-test.artsrn.ualberta.ca/portals/edit/54");
+            //driver = new ChromeDriver(".");
+            //driver.Url = ("https://subline-test.artsrn.ualberta.ca/portals/edit/54");
 
             IWebElement element1 = driver.FindElement(By.ClassName("btn"));
             element1.Click();
 
             IWebElement insertemail = driver.FindElement(By.Id("identifierId"));
-            insertemail.SendKeys("arcguya@gmail.com");
+            insertemail.SendKeys(Settings.UserName);
 
             IWebElement clicknext = driver.FindElement(By.ClassName("VfPpkd-RLmnJb"));
             clicknext.Click();
@@ -31,7 +37,7 @@ namespace Option.Test
             Thread.Sleep(10000);
 
             IWebElement insertpassword = driver.FindElement(By.ClassName("whsOnd"));
-            insertpassword.SendKeys("water4sealion");
+            insertpassword.SendKeys(Settings.Password);
 
             Thread.Sleep(5000);
 
@@ -40,8 +46,15 @@ namespace Option.Test
 
             Thread.Sleep(7000);
         }
+        [SetUp]
+        public void Setup()
+        {
+            driver = new ChromeDriver(".");
+            driver.Url = Settings.TestConfig.EventUrl;
 
-        [Test]
+            Login();
+        }
+            [Test]
         public void NewOptionTest()
         {
             IWebElement clickonpurchasetab = driver.FindElements(By.ClassName("fa"))[6];
@@ -81,8 +94,7 @@ namespace Option.Test
             clickonendtime.Click();
             IWebElement insertendtime = driver.FindElement(By.Id("pc-end-time-0"));
             insertendtime.SendKeys("12:30A");
-
-
+            
             IWebElement clickaddpricebtn = driver.FindElement(By.Id("add-price-option-0"));
             clickaddpricebtn.Click();
             IWebElement insertpricelabel = driver.FindElement(By.Id("po-label-input-pc-0-po-0"));
@@ -93,7 +105,7 @@ namespace Option.Test
             IWebElement insertpricelimit = driver.FindElement(By.Id("price-option-limit-pc-0-po-0"));
             insertpricelimit.Clear();
             insertpricelimit.SendKeys("10");
-
+            
             IWebElement clickaddpricebtn2 = driver.FindElement(By.Id("add-price-option-0"));
             clickaddpricebtn2.Click();
             IWebElement insertpricelabel2 = driver.FindElement(By.Id("po-label-input-pc-0-po-1"));
@@ -111,10 +123,10 @@ namespace Option.Test
             Thread.Sleep(5000);
 
             IWebElement clickonsavebtn = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div/div[1]/div/div[1]/button"));
-            clickonsavebtn.Click();
-
+            clickonsavebtn.Click();       
+            
             driver.Navigate().Refresh();
-
+            
             IWebElement clickonpurchasetab2 = driver.FindElements(By.ClassName("fa"))[6];
             clickonpurchasetab2.Click();
             IWebElement clickonpurchaseoptionstab2 = driver.FindElements(By.ClassName("nav-link"))[10];
@@ -122,7 +134,7 @@ namespace Option.Test
             IWebElement clickondropicon2 = driver.FindElement(By.Id("dropdown-icon-0"));
             clickondropicon2.Click();
             /*
-            IWebElement pricecheck = driver.FindElement(By.Id("price-option-price-pc-0-po-0"));
+            IWebElement pricecheck = driver.FindElement(By.Id("price-option-price-pc-0-po-0"));         
             Assert.AreEqual("25.5", pricecheck.Text);
 
             IWebElement limitcheck = driver.FindElement(By.Id("price-option-limit-pc-0-po-0"));
@@ -141,5 +153,5 @@ namespace Option.Test
 
 
         }
-    }
+    }       
 }
