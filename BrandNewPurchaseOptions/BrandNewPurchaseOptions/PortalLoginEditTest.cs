@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Brandnew.Configuration;
 
-namespace Option.Test
+namespace Portal.Login.Edit.Test
 {
     [TestFixture]
     class BrandNewPurchse
