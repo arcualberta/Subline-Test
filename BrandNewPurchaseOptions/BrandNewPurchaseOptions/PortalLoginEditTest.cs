@@ -19,7 +19,6 @@ namespace Portal.Login.Edit.Test
 
         //protected IWebDriver driver;
 
-        
         public void Login()
         {
             //driver = new ChromeDriver(".");
@@ -49,16 +48,21 @@ namespace Portal.Login.Edit.Test
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver(".");
-            driver.Url = Settings.TestConfig.EventUrl;
+            driver = new ChromeDriver(".")
+            {
+                Url = Settings.TestConfig.EventUrl
+            };
 
             Login();
         }
-            [Test]
+        
+        [Test]
         public void NewOptionTest()
         {
             IWebElement clickonpurchasetab = driver.FindElements(By.ClassName("fa"))[6];
             clickonpurchasetab.Click();
+
+            Thread.Sleep(5000);
 
             IWebElement clickonpurchaseoptionstab = driver.FindElements(By.ClassName("nav-link"))[10];
             clickonpurchaseoptionstab.Click();
@@ -78,7 +82,7 @@ namespace Portal.Login.Edit.Test
             insertcategorytitle.SendKeys("Category 1");
             IWebElement clickonstartdate = driver.FindElement(By.Id("pc-start-date-0__value_"));
             clickonstartdate.Click();
-            IWebElement clickoncurrentdate = driver.FindElement(By.Id("__BVID__132__cell-2020-09-30_"));
+            IWebElement clickoncurrentdate = driver.FindElement(By.Id("__BVID__132__cell-2020-09-17_"));
             clickoncurrentdate.Click();
             IWebElement clickonstarttime = driver.FindElement(By.Id("pc-start-time-0"));
             clickonstarttime.Click();
@@ -86,15 +90,15 @@ namespace Portal.Login.Edit.Test
             insertstarttime.SendKeys("12:30A");
             IWebElement clickonend = driver.FindElement(By.Id("pc-end-date-0__value_"));
             clickonend.Click();
-            IWebElement clicknext = driver.FindElements(By.ClassName("bi-chevron-left"))[3];
+            IWebElement clicknext = driver.FindElements(By.ClassName("bi-chevron-left"))[1];
             clicknext.Click();
-            IWebElement clickonenddate = driver.FindElement(By.Id("__BVID__136__cell-2020-10-30_"));
+            IWebElement clickonenddate = driver.FindElement(By.Id("__BVID__136__cell-2020-10-15_"));
             clickonenddate.Click();
             IWebElement clickonendtime = driver.FindElement(By.Id("pc-start-time-0"));
             clickonendtime.Click();
             IWebElement insertendtime = driver.FindElement(By.Id("pc-end-time-0"));
             insertendtime.SendKeys("12:30A");
-            
+
             IWebElement clickaddpricebtn = driver.FindElement(By.Id("add-price-option-0"));
             clickaddpricebtn.Click();
             IWebElement insertpricelabel = driver.FindElement(By.Id("po-label-input-pc-0-po-0"));
@@ -105,7 +109,7 @@ namespace Portal.Login.Edit.Test
             IWebElement insertpricelimit = driver.FindElement(By.Id("price-option-limit-pc-0-po-0"));
             insertpricelimit.Clear();
             insertpricelimit.SendKeys("10");
-            
+
             IWebElement clickaddpricebtn2 = driver.FindElement(By.Id("add-price-option-0"));
             clickaddpricebtn2.Click();
             IWebElement insertpricelabel2 = driver.FindElement(By.Id("po-label-input-pc-0-po-1"));
@@ -123,18 +127,21 @@ namespace Portal.Login.Edit.Test
             Thread.Sleep(5000);
 
             IWebElement clickonsavebtn = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div/div[1]/div/div[1]/button"));
-            clickonsavebtn.Click();       
-            
+            clickonsavebtn.Click();
+
             driver.Navigate().Refresh();
-            
+
+            Thread.Sleep(5000);
+
             IWebElement clickonpurchasetab2 = driver.FindElements(By.ClassName("fa"))[6];
             clickonpurchasetab2.Click();
             IWebElement clickonpurchaseoptionstab2 = driver.FindElements(By.ClassName("nav-link"))[10];
             clickonpurchaseoptionstab2.Click();
-            IWebElement clickondropicon2 = driver.FindElement(By.Id("dropdown-icon-0"));
-            clickondropicon2.Click();
-            /*
-            IWebElement pricecheck = driver.FindElement(By.Id("price-option-price-pc-0-po-0"));         
+            //IWebElement clickondropicon2 = driver.FindElement(By.Id("dropdown-icon-0"));
+            //clickondropicon2.Click();
+
+
+            IWebElement pricecheck = driver.FindElement(By.Id("price-option-price-pc-0-po-0"));
             Assert.AreEqual("25.5", pricecheck.Text);
 
             IWebElement limitcheck = driver.FindElement(By.Id("price-option-limit-pc-0-po-0"));
@@ -143,7 +150,9 @@ namespace Portal.Login.Edit.Test
             IWebElement pricecheck2 = driver.FindElement(By.Id("price-option-price-pc-0-po-1"));
             Assert.AreEqual("25.5", pricecheck2.Text);
             IWebElement limitcheck2 = driver.FindElement(By.Id("price-option-limit-pc-0-po-1"));
-            Assert.AreEqual("0", limitcheck2.Text);*/
+            Assert.AreEqual("0", limitcheck2.Text);
+
+            Thread.Sleep(5000);
 
             IWebElement clickondeletebtn = driver.FindElement(By.Id("delete-category-button-0"));
             clickondeletebtn.Click();
@@ -151,7 +160,38 @@ namespace Portal.Login.Edit.Test
             IWebElement clickonyesdeletebtn = driver.FindElement(By.Id("are-you-sure-close-all-button"));
             clickonyesdeletebtn.Click();
 
+            driver.Close();
+        }
+        
+        
+        [Test]
+        public void NewEmail()
+        {
+            IWebElement clickonpurchasetab = driver.FindElements(By.ClassName("fa"))[6];
+            clickonpurchasetab.Click();
+
+            Thread.Sleep(5000);
+
+            IWebElement clickonemail = driver.FindElements(By.ClassName("nav-link"))[12];
+            clickonemail.Click();
+
+            IWebElement insertemailsubjectclear = driver.FindElement(By.Id("receipt-email-subject-input"));
+            insertemailsubjectclear.Clear();
+
+            IWebElement insertemailsubject = driver.FindElement(By.Id("receipt-email-subject-input"));
+            insertemailsubject.SendKeys("This is the Subject Section");
+
+            IWebElement insertbodyclear = driver.FindElements(By.ClassName("ql-editor"))[2];
+            insertbodyclear.Clear();
+
+            IWebElement insertbody = driver.FindElements(By.ClassName("ql-editor"))[2];
+            insertbody.SendKeys("This is the body Section");
+
+            IWebElement insertfooter = driver.FindElements(By.ClassName("ql-editor"))[3];
+            insertfooter.SendKeys("This is Footer Section");
+
 
         }
-    }       
+    }
+
 }
