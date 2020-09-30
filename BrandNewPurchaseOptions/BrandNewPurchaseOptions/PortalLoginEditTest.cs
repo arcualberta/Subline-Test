@@ -78,7 +78,7 @@ namespace Portal.Login.Edit.Test
             insertcategorytitle.SendKeys("Category 1");
             IWebElement clickonstartdate = driver.FindElement(By.Id("pc-start-date-0__value_"));
             clickonstartdate.Click();
-            IWebElement clickoncurrentdate = driver.FindElement(By.Id("__BVID__132__cell-2020-07-23_"));
+            IWebElement clickoncurrentdate = driver.FindElement(By.Id("__BVID__132__cell-2020-09-30_"));
             clickoncurrentdate.Click();
             IWebElement clickonstarttime = driver.FindElement(By.Id("pc-start-time-0"));
             clickonstarttime.Click();
@@ -88,7 +88,7 @@ namespace Portal.Login.Edit.Test
             clickonend.Click();
             IWebElement clicknext = driver.FindElements(By.ClassName("bi-chevron-left"))[3];
             clicknext.Click();
-            IWebElement clickonenddate = driver.FindElement(By.Id("__BVID__136__cell-2020-08-23_"));
+            IWebElement clickonenddate = driver.FindElement(By.Id("__BVID__136__cell-2020-10-30_"));
             clickonenddate.Click();
             IWebElement clickonendtime = driver.FindElement(By.Id("pc-start-time-0"));
             clickonendtime.Click();
